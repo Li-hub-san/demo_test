@@ -1,12 +1,12 @@
 package com.example.demo.services;
 
-import com.example.demo.models.Empresa;
 import com.example.demo.models.Pessoa;
 import com.example.demo.models.Salario;
 import com.example.demo.repository.PessoaRepository;
 import com.example.demo.repository.SalarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,10 +29,10 @@ public class SalarioService {
         }
 
         //faltou acabar verificações mas fiquei baralhada...
-//        Optional<Pessoa> pessoOptional = pessoaRepository.findById();
-//        if (pessoOptional.isEmpty()) {
-//            return Optional.empty();
-//        }
+        Optional<Pessoa> pessoOptional = pessoaRepository.findById(salario.getPessoa().getId());
+        if (pessoOptional.isEmpty()) {
+            return Optional.empty();
+        }
 
         return Optional.of(salarioRepository.save(salario));
     }
@@ -42,8 +42,8 @@ public class SalarioService {
         return false;
     }
 
-    public Salario getByPessoa(Long pessoaId) {
+    public List<Salario> getByPessoa(Long pessoaId) {
         // TODO: no time, query missing :(
-        return null;
+        return salarioRepository.findAllByPessoa_Id(pessoaId);
     }
 }
