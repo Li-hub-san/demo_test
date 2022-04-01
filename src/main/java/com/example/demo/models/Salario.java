@@ -15,12 +15,11 @@ import java.util.List;
 public class Salario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private float quantidade;
     private Date data;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "pessoa_id",referencedColumnName = "id")
-    private Pessoa pessoa;
+    @OneToMany(mappedBy = "salario", cascade = CascadeType.ALL)
+    private List<Pessoa> pessoas;
 }

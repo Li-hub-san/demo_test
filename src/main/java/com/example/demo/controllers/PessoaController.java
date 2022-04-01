@@ -30,7 +30,7 @@ public class PessoaController {
         Optional<Pessoa> pessoaOptional = pessoaService.addPessoa(pessoa);
         if (pessoaOptional.isPresent()) {
             sr.setStatus(true);
-            sr.setMessage("Pessoa adicionada");
+            sr.setMessage("Centro comercial adicionado");
             sr.setPessoa(pessoaOptional.get());
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
@@ -60,7 +60,7 @@ public class PessoaController {
         List<Pessoa> pessoas = pessoaService.getByEmpresa(empresaId);
         if (pessoas != null) {
             sr.setStatus(true);
-            sr.setMessage("Pessoas encontradas");
+            sr.setMessage("Centros encontrados");
             sr.setPessoas(pessoas);
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }

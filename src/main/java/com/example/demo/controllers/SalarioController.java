@@ -1,7 +1,10 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.dto.*;
+import com.example.demo.dto.SimpleResponse;
+import com.example.demo.dto.SimpleResponseEmpresa;
+import com.example.demo.dto.SimpleResponsePessoas;
+import com.example.demo.dto.SimpleResponseSalario;
 import com.example.demo.models.Empresa;
 import com.example.demo.models.Pessoa;
 import com.example.demo.models.Salario;
@@ -55,13 +58,13 @@ public class SalarioController {
 
     @GetMapping("/get/{pessoaId}")
     public ResponseEntity<SimpleResponse> getByPessoa(@PathVariable Long pessoaId) {
-        SimpleResponseSalarios sr = new SimpleResponseSalarios();
+        SimpleResponseSalario sr = new SimpleResponseSalario();
 
-       List<Salario> salarios = salarioService.getByPessoa(pessoaId);
-        if (salarios != null) {
+       Salario salario = salarioService.getByPessoa(pessoaId);
+        if (salario != null) {
             sr.setStatus(true);
-            sr.setMessage("Pessoas encontradas");
-            sr.setSalarios(salarios);
+            sr.setMessage("Centros encontrados");
+            sr.setSalario(salario);
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
 
