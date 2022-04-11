@@ -30,7 +30,7 @@ public class PessoaController {
         Optional<Pessoa> pessoaOptional = pessoaService.addPessoa(pessoa);
         if (pessoaOptional.isPresent()) {
             sr.setStatus(true);
-            sr.setMessage("Centro comercial adicionado");
+            sr.setMessage("Pessoa adicionada com sucesso");
             sr.setPessoa(pessoaOptional.get());
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
@@ -45,7 +45,7 @@ public class PessoaController {
         boolean empresaApagada = pessoaService.deletePessoa(id);
         if (empresaApagada){
             sr.setStatus(true);
-            sr.setMessage("Apagado com sucesso");
+            sr.setMessage("Pessoa eliminada com sucesso");
 
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
@@ -60,7 +60,7 @@ public class PessoaController {
         List<Pessoa> pessoas = pessoaService.getByEmpresa(empresaId);
         if (pessoas != null) {
             sr.setStatus(true);
-            sr.setMessage("Centros encontrados");
+            sr.setMessage("Pessoas encontradas com sucesso");
             sr.setPessoas(pessoas);
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }

@@ -1,9 +1,11 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ import javax.persistence.*;
 public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String nome;
     private int idade;
     private String email;
@@ -22,7 +24,6 @@ public class Pessoa {
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
 
-    @ManyToOne()
-    @JoinColumn(name = "salario_id", referencedColumnName = "id")
-    private Salario salario;
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<Salario> salarios;
 }

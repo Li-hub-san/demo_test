@@ -39,8 +39,8 @@ public class EmpresaService {
             return false;
         }
 
-        Optional<Empresa> centroDb = empresaRepository.findById(id);
-        if (centroDb.isEmpty()) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
+        if (empresaOptional.isEmpty()) {
             return false;
         }
 

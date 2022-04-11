@@ -31,7 +31,7 @@ public class EmpresaController {
         Optional<Empresa> empresaOptional = empresaService.addEmpresa(empresa);
         if (empresaOptional.isPresent()) {
             sr.setStatus(true);
-            sr.setMessage("Centro comercial adicionado");
+            sr.setMessage("Empresa adicionada com sucesso");
             sr.setEmpresa(empresaOptional.get());
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
@@ -46,7 +46,7 @@ public class EmpresaController {
         boolean empresaApagada = empresaService.deleteEmpresa(id);
         if (empresaApagada){
             sr.setStatus(true);
-            sr.setMessage("Apagado com sucesso");
+            sr.setMessage("Empresa eliminada com sucesso");
 
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
@@ -61,12 +61,12 @@ public class EmpresaController {
         List<Empresa> empresas = empresaService.getAll();
         if (empresas != null) {
             sr.setStatus(true);
-            sr.setMessage("Centros encontrados");
+            sr.setMessage("Empresas encontradas");
             sr.setEmpresas(empresas);
             return ResponseEntity.status(HttpStatus.OK).body(sr);
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(sr);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sr);
     }
 
 }
